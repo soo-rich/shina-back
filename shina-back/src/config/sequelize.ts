@@ -1,9 +1,9 @@
 import options from "@/config/database";
 import { Sequelize } from "sequelize";
 import env from "@config/env";
-import { initModelUser } from "../database/models/Users";
-import { initModelAbonnement } from "../database/models/Abonnements";
-import { initModelUtilisateur_Abonnement } from "../database/models/Utilisateur_Abonnement";
+import { initModelAbonnement } from "../database/models/Abonnement";
+//import { initModelAbonnement } from "../database/models/Abonnements";
+//import { initModelUtilisateur_Abonnement } from "../database/models/Utilisateur_Abonnement";
 //import { initModelLandLord } from "./models/LandLord"; //  Vérifie le nom exact !
 
 const sequelize = new Sequelize({
@@ -48,9 +48,9 @@ const closeConnection = async () => {
 
 const initModels = async () => {
     // Initialiser tous les modèles
-    initModelUser(sequelize);
+    //initModelUser(sequelize);
     initModelAbonnement(sequelize);
-    initModelUtilisateur_Abonnement(sequelize);
+   // initModelUtilisateur_Abonnement(sequelize);
     //initModelLandLord(sequelize); //  Vérifie le nom
 
     //  Utiliser sequelize.models pour les associations
