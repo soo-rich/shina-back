@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { AbonnementController } from "./abonnementController";
-import validate from "../validate.middleware";
+import validate from "../middleware/validate.middleware";
 import { createSchema, updateSchema, abonnementIdSchema } from "./abonnementSchema";
 import { defaultPaginationQuery} from "@common/api.schema";
 

@@ -1,7 +1,7 @@
-import { Response, NextFunction, Request } from 'express';
+/*import { Response, NextFunction, Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { UserRepository } from '@modules/users/user.repository'
-import { PayLoadToken } from '@modules/authentification/auth.type';
+import { PayLoadToken } from '@modules/middleware/authentification/auth.type';
 import env from '@/config/env';
 import { AuthenticationError, NotFoundError } from '@/common/errors';
 
@@ -43,3 +43,4 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
 };
 
 export default authMiddleware;
+*/

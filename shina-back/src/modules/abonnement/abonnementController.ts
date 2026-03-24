@@ -1,6 +1,6 @@
 import { Request ,Response } from "express";
 import { AbonnementService } from "./abonnementService";
-import { asyncHandler } from "../error.middleware";
+import { asyncHandler } from "../middleware/error.middleware";
 import { NotFoundError } from "@/common/errors";
 
 export class AbonnementController { 

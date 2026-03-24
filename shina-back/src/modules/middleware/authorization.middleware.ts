@@ -1,4 +1,4 @@
-import { sendForbidden } from '@/common/api.response';
+/*import { sendForbidden } from '@/common/api.response';
 import { NextFunction, Request, Response } from 'express';
 export const authorize = (allowRoles: string[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
@@ -7,4 +7,4 @@ export const authorize = (allowRoles: string[]) => {
         }
         next()
     }
-}
+}*/

@@ -1,4 +1,4 @@
-import { AuthenticationError } from '@/common/errors';
+/*import { AuthenticationError } from '@/common/errors';
 import { Request, Response } from 'Express';
 import { UserRepository } from '../users/user.repository';
 
@@ -23,4 +23,4 @@ export const permission = (allowedPermissions: string[]) => {
         // }
 
     }
-}
+}*/
