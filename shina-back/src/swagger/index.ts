@@ -1,8 +1,15 @@
 import env from "@config/env";
 import { OpenAPIV3 } from "openapi-types";
+import { abonnementPath, abonnementsSchema, abonnementsTags } from "@/swagger/abonnementSwagger";
+import { articlePath, articlesSchema, articlesTags } from "./articleSwagger";
+import { toDoSchema,toDoTags,toDoPath  } from "./toDoSwagger";
+
 
 export const tags: OpenAPIV3.TagObject[] = [
   { name: "Health", description: "API health check" },
+  abonnementsTags,
+  articlesTags,
+  toDoTags,
 ];
 
 export const paths: OpenAPIV3.PathsObject = {
@@ -33,11 +40,15 @@ export const paths: OpenAPIV3.PathsObject = {
     },
   },
   // Module paths
-  // ...userPath,
+  ...abonnementPath,
+  ...articlePath,
+  ...toDoPath,
 };
 
 export const schemas: OpenAPIV3.ComponentsObject["schemas"] = {
-  // ...userSchema,
+ ...abonnementsSchema,
+ ...articlesSchema,
+ ...toDoSchema,
 };
 
 export const swaggerSpec: OpenAPIV3.Document = {

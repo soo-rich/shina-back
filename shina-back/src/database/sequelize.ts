@@ -1,6 +1,9 @@
 import options from "@/config/database";
 import { Sequelize } from "sequelize";
 import env from "@config/env"; // ou "@config" selon votre structure
+import { initModelAbonnement } from "./models/Abonnement";
+import { InitModelArticle } from "./models/article";
+import { InitModelToDo } from "./models/toDo";
 
 const sequelize = new Sequelize({
   ...options,
@@ -44,6 +47,10 @@ const closeConnection = async () => {
 };
 
 const initModels = async () => {
+
+  initModelAbonnement(sequelize)
+  InitModelArticle(sequelize)
+  InitModelToDo(sequelize)
   // If you have more models, initialize them here and set up associations if needed before syncing the database.
   Object.values(sequelize.models).forEach((model: any) => {
     if (typeof model.associate === "function") {

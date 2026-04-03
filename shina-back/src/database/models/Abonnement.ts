@@ -8,6 +8,7 @@ export interface AbonnementAttributes extends BaseModel {
     planAbonnement: PlanAbonnementEnum;
     nombreMaxProprietes: number;
     nombreMaxUnitLocation: number;
+    duree:number,
     label: string;
     prix: number;
     detail: string;
@@ -18,7 +19,7 @@ export interface AbonnementCreationAttributes
     extends Optional<AbonnementAttributes, "id" | "createdAt" | "updatedAt"> {}  
 
 
-class abonnements  
+class Abonnement
 extends Model<AbonnementAttributes, AbonnementCreationAttributes>
     implements AbonnementAttributes {
     
@@ -29,6 +30,7 @@ extends Model<AbonnementAttributes, AbonnementCreationAttributes>
     declare label: string;      
     declare prix: number;
     declare detail: string;
+    declare duree: number;
     declare other: JSON;
     declare createdAt: Date;
     declare updatedAt: Date;
@@ -36,7 +38,7 @@ extends Model<AbonnementAttributes, AbonnementCreationAttributes>
 
 
 const initModelAbonnement = (sequelize: Sequelize) => {
-    abonnements.init(  
+    Abonnement.init(  
         {
             id: {
                 type: DataTypes.UUID,
@@ -73,11 +75,16 @@ const initModelAbonnement = (sequelize: Sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            duree: {
+                type:DataTypes.INTEGER,
+                allowNull: false,
+            },
 
             other: {
                 type: DataTypes.JSON,
                 allowNull: true,
             },
+            
         },
         {
         sequelize,modelName: "Abonnement",
@@ -90,4 +97,4 @@ const initModelAbonnement = (sequelize: Sequelize) => {
 };
 
 
-export { abonnements, initModelAbonnement };
+export { Abonnement, initModelAbonnement };

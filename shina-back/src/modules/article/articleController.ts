@@ -1,13 +1,14 @@
+
 import { Request ,Response } from "express";
-import { AbonnementService } from "./abonnementService";
+import { ArticleService } from "./articleService";
 import { asyncHandler } from "../middleware/error.middleware";
 import { NotFoundError } from "@/common/errors";
 
-export class AbonnementController { 
-    private abonnementService: AbonnementService
+export class ArticleController { 
+    private articleService: ArticleService
 
     constructor() {
-        this.abonnementService = new AbonnementService();
+        this.articleService = new ArticleService();
     }
 
      // Recupere les abonnements pagines
@@ -16,40 +17,35 @@ export class AbonnementController {
         const page = parseInt(req.query.page as string) || 1;
         const limit = parseInt(req.query.limit as string) || 10;
 
-        const result = await this.abonnementService.findAllPaginated(page, limit);
+        const result = await this.articleService.findAllPaginated(page, limit);
         return res.json(result);
      }); 
 
-     // Recupere un abonnement par ID
+     // Recupere un article par ID
 
      findById = asyncHandler(async (req: Request, res: Response) => {
         const { id} = req.params as { id: string};
-        const abonnement = await this.abonnementService.findById(id);
+        const article = await this.articleService.findById(id);
 
-        if (!abonnement) {
-            throw new NotFoundError("Abonnement", id)
+        if (!article) {
+            throw new NotFoundError("Article", id)
         }
 
-        return res.status(200).json(abonnement);
+        return res.status(200).json(article);
      });
 
-
-     // Creer un abonnement
+     // Creer un article
      create = asyncHandler(async (req: Request, res: Response) => {
-        const created =await this.abonnementService.create(req.body);
-
-     
-        return res.status(201).json(created);
-       
+        const created = await this.articleService.create(req.body);
+        return res.status(201).json(created);    
      });
 
-
-     // MAJ un abonnement
+     // MAJ un article
    update = asyncHandler(async(req: Request, res: Response) => {
     try{
-        const { id } = req.params as { id: string };
-        const payload = req.body;
-        const updated = await this.abonnementService.update(id, payload);
+        const { id, } = req.params as { id: string };
+       const data = req.body;
+        const updated = await this.articleService.update(id, data);
         return res.json(updated);
     } catch (error: any) {
         const status = /non trouvé/i.test(error.message) ? 404 : 400;
@@ -60,7 +56,7 @@ export class AbonnementController {
    //Supprimer abonnement
    delete = asyncHandler(async (req: Request, res: Response) => {
     const { id} = req.params as { id: string};
-    const result = await this.abonnementService.delete(id);
+    const result = await this.articleService.delete(id);
 
     return res.json(result)
    });

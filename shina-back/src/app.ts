@@ -3,9 +3,10 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import env from "@config/env";
 import swaggerSpec from "@/swagger";
-import errorHandler, {
-  notFoundHandler,
-} from "@/modules/middleware/error.middleware";
+import errorHandler, { notFoundHandler,} from "@/modules/middleware/error.middleware";
+import abonnementRoute from "./modules/abonnement/abonnementRoute";
+import articleRoute from "./modules/article/articleRoute";
+import toDoRoute from "./modules/toDo/toDoRoute";
 
 const app: Express = express();
 const API_PREFIX = env.API_PREFIX;
@@ -29,7 +30,7 @@ app.use(
     customSiteTitle: "Rental Management API Documentation",
   }),
 );
-
+-+
 app.get("/api-docs.json", (req: Request, res: Response) => {
   res.setHeader("Content-Type", "application/json");
   res.send(swaggerSpec);
@@ -46,6 +47,9 @@ app.get(`${API_PREFIX}/health`, (req: Request, res: Response) => {
 });
 
 // app.use(`${API_PREFIX}/users`, userRoute);
+app.use(`${API_PREFIX}/abonnements`, abonnementRoute);
+app.use(`${API_PREFIX}/articles`, articleRoute)
+app.use(`${API_PREFIX}/toDos`, toDoRoute)
 
 // 404 handler
 app.use(notFoundHandler);
